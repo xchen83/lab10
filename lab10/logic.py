@@ -18,19 +18,12 @@ class Game:
 
     def log_game(self, winner, player1, player2, moves, first_move=None, result=None):
         log_file_path = 'logs/game_logs_lab10.csv'
-
-        # Check if the log file exists; if not, write the header row
-        write_header = not os.path.isfile(log_file_path)
-
+        is_file_empty = os.stat(log_file_path).st_size == 0
         with open(log_file_path, mode="a", newline="") as file:
             writer = csv.writer(file)
-
-            # Write the header row if the file is newly created
-            if write_header:
+            if is_file_empty:
                 header = ["Winner", "Player 1", "Player 2", "Moves", "First Move", "Result"]
                 writer.writerow(header)
-
-            # Determine the result for the first player
             if winner == "X" and player1 == "Human":
                 result_for_player1 = "Win"
             elif winner == "O" and player1 == "Bot":
@@ -39,7 +32,6 @@ class Game:
                 result_for_player1 = "Draw"
             else:
                 result_for_player1 = "Loss"
-            # Ensure all fields are written
             row_data = [winner, player1, player2, moves, first_move, result_for_player1]
             writer.writerow(row_data)
 

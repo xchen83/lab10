@@ -1,5 +1,3 @@
-# cli.py
-
 from logic import Game, Human, Bot
 
 def play_game():
@@ -47,9 +45,7 @@ def play_game():
     player1 = "Human" if winner == "X" else "Bot"
     player2 = "Bot" if winner == "X" else "Human"
     moves = game.turnCounter
-
     game.log_game(winner, player1, player2, moves, first_move, result)
-
 
 if __name__ == '__main__':
     play_game()
